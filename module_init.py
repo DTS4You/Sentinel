@@ -18,8 +18,8 @@ class Global_WS2812:
     numpix_4            = 80    # Anzahl LEDs im 4. Stripe
     numpix_5            = 80    # Anzahl LEDs im 5. Stripe
     numpix_6            = 80    # Anzahl LEDs im 6. Stripe
-    numpix_7            = 80    # Anzahl LEDs im 5. Stripe
-
+    numpix_7            = 80    # Anzahl LEDs im 7. Stripe
+    numpix_8            = 80    # Anzahl LEDs im 8. Stripe
 
 
     color_def           = (  0,  0, 10)
