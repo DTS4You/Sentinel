@@ -126,17 +126,10 @@ def setup_ws2812():
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_2, 1, 3, "GRB"))
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_3, 2, 4, "GRB"))
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 3, 5, "GRB"))
-    
-    led_obj.append(Ledsegment(strip_obj[mg.seg_01_strip], mg.seg_01_start, mg.seg_01_count))      #  0 (01) -> LED Position -> # 01 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_02_strip], mg.seg_02_start, mg.seg_02_count))      #  1 (02) -> LED Position -> # 02 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_03_strip], mg.seg_03_start, mg.seg_03_count))      #  2 (03) -> LED Position -> # 03 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_04_strip], mg.seg_04_start, mg.seg_04_count))      #  3 (04) -> LED Position -> # 04 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_05_strip], mg.seg_05_start, mg.seg_05_count))      #  4 (05) -> LED Position -> # 05 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_06_strip], mg.seg_06_start, mg.seg_06_count))      #  5 (06) -> LED Position -> # 06 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_07_strip], mg.seg_07_start, mg.seg_07_count))      #  6 (07) -> LED Position -> # 07 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_08_strip], mg.seg_08_start, mg.seg_08_count))      #  7 (08) -> LED Position -> # 08 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_09_strip], mg.seg_09_start, mg.seg_09_count))      #  8 (09) -> LED Position -> # 09 #
-    led_obj.append(Ledsegment(strip_obj[mg.seg_10_strip], mg.seg_10_start, mg.seg_10_count))      #  9 (10) -> LED Position -> # 10 #
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 4, 6, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 5, 7, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 6, 8, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 7, 9, "GRB"))
     
     for strips in strip_obj:
         strips.brightness(255)
@@ -147,76 +140,6 @@ def setup_ws2812():
     for strips in strip_obj:
         strips.show()
 
-    # Setze Farbwerte in alle LED-Objekte
-    for leds in led_obj:
-        leds.set_color_off(mg.color_off)
-        leds.set_color_def(mg.color_def)
-        leds.set_color_on(mg.color_on)
-        leds.set_color_value(mg.color_dot)
-        leds.set_color_show(mg.color_dot)
-        leds.set_color_blink_off(mg.color_blink_off)
-        leds.set_color_blink_on(mg.color_blink_on)
-    
-    # Blinken aus
-    do_all_no_blink()
-
-
-def do_all_on():
-    # Setze Farbwerte in alle LED-Objekte
-    for leds in led_obj:
-        leds.show_on()
-    ledstate.refresh()
-
-def do_all_off():
-    # Setze Farbwerte in alle LED-Objekte
-    for leds in led_obj:
-        leds.show_off()
-    ledstate.refresh()
-
-def do_all_def():
-    # Setze Farbwerte in alle LED-Objekte
-    for leds in led_obj:
-        leds.show_def()
-    ledstate.refresh()
-
-def do_all_no_blink():
-    for leds in led_obj:
-        leds.blink_state = False
-
-def do_blink():
-    ledstate.do_blink()
-    for leds in led_obj:
-        if leds.get_blink_state():
-            leds.show_blink()
-        else:
-            pass
-    
-    ledstate.set(True)
-    ledstate.refresh()
-
-def do_refresh():
-
-    ledstate.refresh()
-
-def do_get_state():
-
-    return ledstate.get()
-
-def set_all_off():                          # Setze Farbwerte in alle LED-Objekte
-    # Setze Farbwerte in alle LED-Objekte
-    for leds in led_obj:
-        leds.show_off()
-    ledstate.refresh()
-
-def set_all_def():                          # Setze Farbwerte in alle LED-Objekte
-    for leds in led_obj:
-        leds.show_def()
-    ledstate.refresh()
-
-def set_all_on():                           # Setze Farbwerte in alle LED-Objekte
-    for leds in led_obj:
-        leds.show_def()
-    ledstate.refresh()
 
 def self_test():                                # Pro Stripe einmal Aus-RGB(25%) -Aus 
     for strips in strip_obj:
@@ -242,60 +165,32 @@ def self_test():                                # Pro Stripe einmal Aus-RGB(25%)
         time.sleep(0.3)
 
 
-def do_dot_test():
-    delay_time = 0.2
-    color_now = (0,10,60)
-    for y in range(len(led_obj)):
-        for x in range(led_obj[y].count):
-            if x > 0:
-                led_obj[y].set_pixel(x - 1, (0,0,0))
-            led_obj[y].set_pixel(x, color_now)
-            do_refresh()
-            time.sleep(delay_time)
-        led_obj[y].show_off()
-        do_refresh()
-        time.sleep(delay_time)
-
-
-def set_led_obj(obj,state):
-    if state == "off":
-        led_obj[obj].show_off()
-    if state == "def":
-        led_obj[obj].show_def()
-    if state == "on":
-        led_obj[obj].show_on()
-    if state == "blink":
-        led_obj[obj].show_blink()
-    do_refresh()
 
 def main():
     
     print("WS2812 -> Setup")
     setup_ws2812()
         
-    #print("WS2812 -> Run self test")
-    #self_test()
+    print("WS2812 -> Run self test")
+    self_test()
     
-    #print("WS2812 -> Blink Test")
-    #do_blink_test()
+    print("WS2812 -> Rotate Test")
+    strip_obj[4].fill((0,0,10))
+    strip_obj[4].set_pixel(0,(20,20,80))
+    strip_obj[4].set_pixel(1,(50,50,255))
+    strip_obj[4].set_pixel(2,(20,20,80))
+    strip_obj[4].show()
 
-    #print("WS2812 -> Object Test")
-    #do_obj_on_off_def_off()
-
-    #print("WS2812 -> LED-Dot-Test")
-    #do_dot_test()
-
-    print("WS2812 -> Segment-Blink")
-    set_led_obj(0,"blink")
-    for i in range(0,10):
-        do_blink()
-        time.sleep(0.5)
-    set_led_obj(0,"def")    
+    time.sleep(0.3)
     
-    led_obj[0].show_off()
-    do_refresh()
+    i = 0
+    while i < 300:
+        strip_obj[4].rotate_right(1)
+        strip_obj[4].show()
+        time.sleep(0.3)
+        i = i + 1
 
-
+  
     print("WS2812 -> End of Program !!!")
 
 # End
