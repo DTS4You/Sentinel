@@ -126,10 +126,10 @@ def setup_ws2812():
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_2, 1, 3, "GRB"))
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_3, 2, 4, "GRB"))
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 3, 5, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 4, 6, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 5, 7, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 6, 8, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 7, 9, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_5, 4, 6, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_6, 5, 7, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_7, 6, 8, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_8, 7, 9, "GRB"))
     
     for strips in strip_obj:
         strips.brightness(255)
@@ -141,7 +141,7 @@ def setup_ws2812():
         strips.show()
 
 
-def self_test():                                # Pro Stripe einmal Aus-RGB(25%) -Aus 
+def test_stripe():                                # Pro Stripe einmal Aus-RGB(25%) -Aus 
     for strips in strip_obj:
         # Alle Aus
         strips.set_pixel_line(0, strips.num_leds - 1, (0,0,0))
@@ -164,31 +164,35 @@ def self_test():                                # Pro Stripe einmal Aus-RGB(25%)
         strips.show()
         time.sleep(0.3)
 
+def test_rotate():
+    for i in range(0,8):
+        strip_obj[i].fill((0,0,10))
+        strip_obj[i].set_pixel(0,(20,20,80))
+        strip_obj[i].set_pixel(1,(50,50,255))
+        strip_obj[i].set_pixel(2,(20,20,80))
+        strip_obj[i].show()
 
+    #time.sleep(0.3)
+    
+    loop = 0
+    while loop < 300:
+        for i in range(0,8):
+            strip_obj[i].rotate_right(1)
+            strip_obj[i].show()
+        
+        time.sleep(0.02)
+        loop = loop + 1
 
 def main():
     
     print("WS2812 -> Setup")
     setup_ws2812()
         
-    print("WS2812 -> Run self test")
-    self_test()
+    #print("WS2812 -> Run self test")
+    #test_stripe()
     
     print("WS2812 -> Rotate Test")
-    strip_obj[4].fill((0,0,10))
-    strip_obj[4].set_pixel(0,(20,20,80))
-    strip_obj[4].set_pixel(1,(50,50,255))
-    strip_obj[4].set_pixel(2,(20,20,80))
-    strip_obj[4].show()
-
-    time.sleep(0.3)
-    
-    i = 0
-    while i < 300:
-        strip_obj[4].rotate_right(1)
-        strip_obj[4].show()
-        time.sleep(0.3)
-        i = i + 1
+    test_rotate()
 
   
     print("WS2812 -> End of Program !!!")
