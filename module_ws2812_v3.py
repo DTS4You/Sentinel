@@ -166,10 +166,10 @@ def test_stripe():                                # Pro Stripe einmal Aus-RGB(25
 
 def test_rotate():
     for i in range(0,8):
-        strip_obj[i].fill((0,0,10))
-        strip_obj[i].set_pixel(0,(20,20,80))
-        strip_obj[i].set_pixel(1,(50,50,255))
-        strip_obj[i].set_pixel(2,(20,20,80))
+        strip_obj[i].fill((0,10,10))
+        strip_obj[i].set_pixel(0,(20,80,80))
+        strip_obj[i].set_pixel(1,(50,255,255))
+        strip_obj[i].set_pixel(2,(20,80,80))
         strip_obj[i].show()
 
     #time.sleep(0.3)
