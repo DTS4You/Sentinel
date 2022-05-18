@@ -12,6 +12,9 @@ class Global_Module:
 
 class Global_WS2812:
 
+    sel_pin_1           = 10
+    sel_pin_2           = 11
+
     numpix_1            = 16    # Anzahl LEDs im 1. Stripe
     numpix_2            = 16    # Anzahl LEDs im 2. Stripe
     numpix_3            = 16    # Anzahl LEDs im 3. Stripe

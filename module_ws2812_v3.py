@@ -2,7 +2,10 @@
 import time
 import module_neopixel
 from module_init import Global_WS2812 as MyGlobal
+from machine import Pin
 
+sel_1 = Pin(MyGlobal.sel_pin_1,Pin.OUT)
+sel_2 = Pin(MyGlobal.sel_pin_2,Pin.OUT)
 
 class LedState:
     def __init__(self):
@@ -176,7 +179,7 @@ def test_rotate():
     
 
     loop = 0
-    while loop < 300:
+    while loop < 100:
         for i in range(0,8):
             strip_obj[i].rotate_right(1)
             strip_obj[i].show()
@@ -186,6 +189,8 @@ def test_rotate():
 
 def main():
     
+    sel_1.value(0)
+
     print("WS2812 -> Setup")
     setup_ws2812()
         
@@ -193,6 +198,20 @@ def main():
     #test_stripe()
     
     print("WS2812 -> Rotate Test")
+    test_rotate()
+
+    sel_1.value(0)
+
+    strip_obj[0].fill((20,0,10))
+    strip_obj[0].set_pixel(0,(80,10,80))
+    strip_obj[0].set_pixel(1,(255,255,255))
+    strip_obj[0].set_pixel(2,(80,10,80))
+    strip_obj[0].show()
+
+    time.sleep(1)
+
+    sel_1.value(0)
+
     test_rotate()
 
   
