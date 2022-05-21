@@ -155,18 +155,18 @@ def test_stripe():                                # Pro Stripe einmal Aus-RGB(25
     # strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, ( 30, 30, 30))
     # strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, (  5,  5, 10))
 
-    strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, MyGlobal.color_def)
+    strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, MyGlobal.color_anim_0)
     strip_obj[1].set_pixel_line(0, strip_obj[1].num_leds - 1, MyGlobal.color_def)
     strip_obj[2].set_pixel_line(0, strip_obj[2].num_leds - 1, MyGlobal.color_def)
     strip_obj[3].set_pixel_line(0, strip_obj[3].num_leds - 1, MyGlobal.color_def)
     strip_obj[4].set_pixel_line(0, strip_obj[4].num_leds - 1, MyGlobal.color_def)
     strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, MyGlobal.color_def)
-    strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, MyGlobal.color_anim_0)
+    strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, MyGlobal.color_def)
     strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, MyGlobal.color_def)
 
-    strip_obj[6].set_pixel(4, MyGlobal.color_anim_1)
-    strip_obj[6].set_pixel(5, MyGlobal.color_anim_2)
-    strip_obj[6].set_pixel(6, MyGlobal.color_anim_1)
+    strip_obj[0].set_pixel(4, MyGlobal.color_anim_1)
+    strip_obj[0].set_pixel(5, MyGlobal.color_anim_2)
+    strip_obj[0].set_pixel(6, MyGlobal.color_anim_1)
 
     for i in range(0,8):
         strip_obj[i].show()
@@ -203,7 +203,7 @@ def main():
     #print("WS2812 -> Run self test")
     #test_stripe()
     
-    print("WS2812 -> Rotate Test")
+    print("WS2812 -> Test 1")
     test_stripe()
 
     sel_1.value(0)
