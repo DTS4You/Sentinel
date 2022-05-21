@@ -155,12 +155,12 @@ def test_stripe():                                # Pro Stripe einmal Aus-RGB(25
     # strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, ( 30, 30, 30))
     # strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, (  5,  5, 10))
 
-    strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, MyGlobal.color_anim_0)
+    strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, MyGlobal.color_def)
     strip_obj[1].set_pixel_line(0, strip_obj[1].num_leds - 1, MyGlobal.color_def)
     strip_obj[2].set_pixel_line(0, strip_obj[2].num_leds - 1, MyGlobal.color_def)
     strip_obj[3].set_pixel_line(0, strip_obj[3].num_leds - 1, MyGlobal.color_def)
     strip_obj[4].set_pixel_line(0, strip_obj[4].num_leds - 1, MyGlobal.color_def)
-    strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, MyGlobal.color_def)
+    strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, MyGlobal.color_anim_0)
     strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, MyGlobal.color_def)
     strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, MyGlobal.color_def)
 
@@ -208,17 +208,7 @@ def main():
 
     sel_1.value(0)
 
-    time.sleep(3)
-
-    # strip_obj[0].fill((20,0,10))
-    # strip_obj[0].set_pixel(0,(80,10,80))
-    # strip_obj[0].set_pixel(1,(255,255,255))
-    # strip_obj[0].set_pixel(2,(80,10,80))
-    # strip_obj[0].show()
-
-    time.sleep(1)
-
-    sel_1.value(0)
+ 
 
     # test_rotate()
 

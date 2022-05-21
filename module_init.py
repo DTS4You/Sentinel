@@ -15,14 +15,14 @@ class Global_WS2812:
     sel_pin_1           = 10
     sel_pin_2           = 11
 
-    numpix_1            = 432   # Anzahl LEDs im 1. Stripe
-    numpix_2            = 432   # Anzahl LEDs im 2. Stripe
-    numpix_3            = 432   # Anzahl LEDs im 3. Stripe
-    numpix_4            = 432   # Anzahl LEDs im 4. Stripe
-    numpix_5            = 432   # Anzahl LEDs im 5. Stripe
-    numpix_6            = 432   # Anzahl LEDs im 6. Stripe
-    numpix_7            = 432   # Anzahl LEDs im 7. Stripe
-    numpix_8            = 432    # Anzahl LEDs im 8. Stripe
+    numpix_1            = 444   # Anzahl LEDs im 1. Stripe Sentinel 4
+    numpix_2            = 423   # Anzahl LEDs im 2. Stripe Sentinel 2
+    numpix_3            = 423   # Anzahl LEDs im 3. Stripe Sentinel 6
+    numpix_4            = 426   # Anzahl LEDs im 4. Stripe Sentinel 5 5B
+    numpix_5            = 423   # Anzahl LEDs im 5. Stripe Sentinel 3
+    numpix_6            = 423   # Anzahl LEDs im 6. Stripe Sentinel 1
+    numpix_7            = 423   # Anzahl LEDs im 7. Stripe
+    numpix_8            = 423   # Anzahl LEDs im 8. Stripe
 
     color_def           = (  0,  0, 10)
     color_off           = (  0,  0,  0)
