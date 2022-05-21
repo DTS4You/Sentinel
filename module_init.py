@@ -2,12 +2,18 @@
 # ### MyGlobal
 # #############################################################################
 
+# Stripe 0 -> Sentinel 4
+# Stripe 1 -> Sentinel 2
+# Stripe 2 -> Sentinel 6
+# Stripe 3 -> Sentinel 5 / 5B
+# Stripe 4 -> Sentinel 3
+# Stripe 5 -> Sentinel 1
 
 class Global_Module:
     
     inc_ws2812          = True
-    inc_decoder         = False
-    inc_serial          = False
+    inc_decoder         = True
+    inc_serial          = True
 
 
 class Global_WS2812:
@@ -21,8 +27,8 @@ class Global_WS2812:
     numpix_4            = 426   # Anzahl LEDs im 4. Stripe Sentinel 5 5B
     numpix_5            = 423   # Anzahl LEDs im 5. Stripe Sentinel 3
     numpix_6            = 423   # Anzahl LEDs im 6. Stripe Sentinel 1
-    numpix_7            = 423   # Anzahl LEDs im 7. Stripe
-    numpix_8            = 423   # Anzahl LEDs im 8. Stripe
+    numpix_7            = 16    # Anzahl LEDs im 7. Stripe n.B.
+    numpix_8            = 16    # Anzahl LEDs im 8. Stripe n.B.
 
     color_def           = (  0,  0, 10)
     color_off           = (  0,  0,  0)
