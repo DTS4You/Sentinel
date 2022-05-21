@@ -15,21 +15,32 @@ class Global_WS2812:
     sel_pin_1           = 10
     sel_pin_2           = 11
 
-    numpix_1            = 16    # Anzahl LEDs im 1. Stripe
-    numpix_2            = 16    # Anzahl LEDs im 2. Stripe
-    numpix_3            = 16    # Anzahl LEDs im 3. Stripe
-    numpix_4            = 16    # Anzahl LEDs im 4. Stripe
-    numpix_5            = 40    # Anzahl LEDs im 5. Stripe
-    numpix_6            = 40    # Anzahl LEDs im 6. Stripe
-    numpix_7            = 40    # Anzahl LEDs im 7. Stripe
-    numpix_8            = 40    # Anzahl LEDs im 8. Stripe
+    numpix_1            = 250   # Anzahl LEDs im 1. Stripe
+    numpix_2            = 50    # Anzahl LEDs im 2. Stripe
+    numpix_3            = 50    # Anzahl LEDs im 3. Stripe
+    numpix_4            = 50    # Anzahl LEDs im 4. Stripe
+    numpix_5            = 50    # Anzahl LEDs im 5. Stripe
+    numpix_6            = 50    # Anzahl LEDs im 6. Stripe
+    numpix_7            = 50    # Anzahl LEDs im 7. Stripe
+    numpix_8            = 50    # Anzahl LEDs im 8. Stripe
 
     color_def           = (  0,  0, 10)
     color_off           = (  0,  0,  0)
     color_on            = (100,100,100)
-    color_dot           = ( 50, 50, 50)
+    color_anim_0        = (  0, 10,  0)
+    color_anim_1        = (  0, 50,  0)
+    color_anim_2        = (  0,100,  0)
     color_blink_on      = (100,100,100)
     color_blink_off     = ( 50, 50, 50)
+
+    color_s1_0          = ( 10,  0,  0)
+    color_s2_0          = (  0, 10,  0)
+    color_s3_0          = ( 30, 30, 30)
+    color_s4_0          = ( 40, 40, 40)
+    color_s5_0          = ( 50, 50, 50)
+    color_s6_0          = ( 60, 60, 60)
+    color_s7_0          = ( 70, 70, 70)
+    color_s8_0          = ( 80, 80, 80)
 
 
 class Global_Default:

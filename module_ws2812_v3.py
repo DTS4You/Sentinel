@@ -145,27 +145,33 @@ def setup_ws2812():
 
 
 def test_stripe():                                # Pro Stripe einmal Aus-RGB(25%) -Aus 
-    for strips in strip_obj:
-        # Alle Aus
-        strips.set_pixel_line(0, strips.num_leds - 1, (0,0,0))
-        strips.show()
-        time.sleep(0.3)
-        # Alle Rot
-        strips.set_pixel_line(0, strips.num_leds - 1, (50,0,0))
-        strips.show()
-        time.sleep(0.3)
-        # Alle Grün
-        strips.set_pixel_line(0, strips.num_leds - 1, (0,50,0))
-        strips.show()
-        time.sleep(0.3)
-        # Alle Blau
-        strips.set_pixel_line(0, strips.num_leds - 1, (0,0,50))
-        strips.show()
-        time.sleep(0.3)
-        # Alle Aus
-        strips.set_pixel_line(0, strips.num_leds - 1, (0,0,0))
-        strips.show()
-        time.sleep(0.3)
+    
+    # strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, ( 40,  0,  0))
+    # strip_obj[1].set_pixel_line(0, strip_obj[1].num_leds - 1, (  0, 40,  0))
+    # strip_obj[2].set_pixel_line(0, strip_obj[2].num_leds - 1, (  0,  0, 40))
+    # strip_obj[3].set_pixel_line(0, strip_obj[3].num_leds - 1, ( 30, 30,  0))
+    # strip_obj[4].set_pixel_line(0, strip_obj[4].num_leds - 1, ( 20,  0, 30))
+    # strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, (  0, 30, 20))
+    # strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, ( 30, 30, 30))
+    # strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, (  5,  5, 10))
+
+    strip_obj[0].set_pixel_line(0, strip_obj[0].num_leds - 1, MyGlobal.color_def)
+    strip_obj[1].set_pixel_line(0, strip_obj[1].num_leds - 1, MyGlobal.color_def)
+    strip_obj[2].set_pixel_line(0, strip_obj[2].num_leds - 1, MyGlobal.color_def)
+    strip_obj[3].set_pixel_line(0, strip_obj[3].num_leds - 1, MyGlobal.color_def)
+    strip_obj[4].set_pixel_line(0, strip_obj[4].num_leds - 1, MyGlobal.color_def)
+    strip_obj[5].set_pixel_line(0, strip_obj[5].num_leds - 1, MyGlobal.color_def)
+    strip_obj[6].set_pixel_line(0, strip_obj[6].num_leds - 1, MyGlobal.color_anim_0)
+    strip_obj[7].set_pixel_line(0, strip_obj[7].num_leds - 1, MyGlobal.color_def)
+
+    strip_obj[6].set_pixel(4, MyGlobal.color_anim_1)
+    strip_obj[6].set_pixel(5, MyGlobal.color_anim_2)
+    strip_obj[6].set_pixel(6, MyGlobal.color_anim_1)
+
+    for i in range(0,8):
+        strip_obj[i].show()
+
+    time.sleep(0.3)
 
 def test_rotate():
     for i in range(0,8):
@@ -198,21 +204,23 @@ def main():
     #test_stripe()
     
     print("WS2812 -> Rotate Test")
-    test_rotate()
+    test_stripe()
 
     sel_1.value(0)
 
-    strip_obj[0].fill((20,0,10))
-    strip_obj[0].set_pixel(0,(80,10,80))
-    strip_obj[0].set_pixel(1,(255,255,255))
-    strip_obj[0].set_pixel(2,(80,10,80))
-    strip_obj[0].show()
+    time.sleep(3)
+
+    # strip_obj[0].fill((20,0,10))
+    # strip_obj[0].set_pixel(0,(80,10,80))
+    # strip_obj[0].set_pixel(1,(255,255,255))
+    # strip_obj[0].set_pixel(2,(80,10,80))
+    # strip_obj[0].show()
 
     time.sleep(1)
 
     sel_1.value(0)
 
-    test_rotate()
+    # test_rotate()
 
   
     print("WS2812 -> End of Program !!!")
