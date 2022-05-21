@@ -134,15 +134,36 @@ def setup_ws2812():
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_7, 6, 8, "GRB"))
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_8, 7, 9, "GRB"))
     
-    for strips in strip_obj:
-        strips.brightness(255)
+    for stripes in strip_obj:
+        stripes.brightness(255)
    
     # Alle Leds auf Vorgabewert -> aus
-    for strips in strip_obj:
-        strips.set_pixel_line(0, strips.num_leds - 1, mg.color_off)
-    for strips in strip_obj:
-        strips.show()
+    for stripes in strip_obj:
+        stripes.set_pixel_line(0, stripes.num_leds - 1, mg.color_off)
+    for stripes in strip_obj:
+        stripes.show()
 
+
+def do_all_off():
+    # Setze Farbwerte in alle LED-Objekte
+    for stripes in strip_obj:
+        stripes.fill(mg.color_off)
+    for stripes in strip_obj:
+        stripes.show()
+
+def do_all_def():
+    # Setze Farbwerte in alle LED-Objekte
+    for stripes in strip_obj:
+        stripes.fill(mg.color_def)
+    for stripes in strip_obj:
+        stripes.show()
+
+def do_all_on():
+    # Setze Farbwerte in alle LED-Objekte
+    for stripes in strip_obj:
+        stripes.fill(mg.color_on)
+    for stripes in strip_obj:
+        stripes.show()
 
 def test_stripe():                                # Pro Stripe einmal Aus-RGB(25%) -Aus 
     
@@ -200,18 +221,8 @@ def main():
     print("WS2812 -> Setup")
     setup_ws2812()
         
-    #print("WS2812 -> Run self test")
-    #test_stripe()
-    
     print("WS2812 -> Test 1")
-    test_stripe()
-
-    sel_1.value(0)
-
- 
-
-    # test_rotate()
-
+    do_all_def()
   
     print("WS2812 -> End of Program !!!")
 

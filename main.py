@@ -76,7 +76,7 @@ if __name__ == "__main__":
         MyWS2812.setup_ws2812()
         ### Test ###
         #print("WS2812 -> Dot-Test")
-        MyWS2812.test_rotate()
+        #MyWS2812.test_rotate()
 
     if MyModule.inc_decoder:
         #print("Decode -> Load-Module")
