@@ -8,132 +8,58 @@ sel_1 = Pin(MyGlobal.sel_pin_1,Pin.OUT)
 sel_2 = Pin(MyGlobal.sel_pin_2,Pin.OUT)
 
 class LedState:
-    def __init__(self):
-        self.state = False
-        self.blink_state = False
+    def __init__(self, led_counts, direction, offset):
+        self.anim_state = False
+        self.led_counts = led_counts
+        self.direction = direction
+        self.offset = offset
 
-    def set(self, set):
-        self.state = set
+    def set_anim(self, set):
+        self.anim_state = set
 
-    def get(self):
-        return self.state
+    def get_anim(self):
+        return self.anim_state
     
-    def do_blink(self):
-        self.blink_state = not self.blink_state
+    def set_direction(self, direction):
+        self.direction = direction
 
-    def get_blink(self):
-        return self.blink_state
-
-    def refresh(self):
-        self.state = False
-        for strips in strip_obj:
-            strips.show()
-
-
-class Ledsegment:
-
-    def __init__(self, neopixel, start, count):
-        self.neopixel = neopixel
-        self.start = start
-        self.stop = self.start + count - 1
-        self.count = count
-        self.position = 0
-        self.run_state = False
-        self.blink_state = False
-        self.color_on = (0,0,0)
-        self.color_default = (0,0,0)
-        self.color_off = (0,0,0)
-        self.color_blink_on = (0,0,0)
-        self.color_blink_off = (0,0,0)
-        self.color_show = (0,0,0)
-        self.color_value = (0,0,0)
-
-    def set_color_on(self, color_on):
-        self.color_on = color_on
-
-    def set_color_def(self, color_default):
-        self.color_default = color_default
-        
-    def set_color_off(self, color_off):
-        self.color_off = color_off
-
-    def set_color_value(self, color_value):
-        self.color_value = color_value
-
-    def set_color_show(self, color_value):
-        self.color_show = color_value
-
-    def set_color_blink_off(self, color_value):
-        self.color_blink_off = color_value
-
-    def set_color_blink_on(self, color_value):
-        self.color_blink_on = color_value
-
-    def set_pixel(self, pixel_num, color=None):
-        if color:
-            self.color_value = color
-        else:
-            self.color_value = self.color_show
-        self.neopixel.set_pixel(self.start + pixel_num, self.color_value)
-
-    def show_on(self):
-        self.color_show = self.color_on
-        self.blink_state = False
-        self.set_line()
-
-    def show_def(self):
-        self.color_show = self.color_default
-        self.blink_state = False
-        self.set_line()
-
-    def show_off(self):
-        self.color_show = self.color_off
-        self.blink_state = False
-        self.set_line()
-
-    def show_blink(self):
-        self.blink_state = True
-        if ledstate.get_blink():
-            self.color_show = self.color_blink_on
-        else:
-            self.color_show = self.color_blink_off
-        self.set_line()
-
-    def get_blink_state(self):
-        return self.blink_state
-
-    def set_line(self):
-        self.neopixel.set_pixel_line(self.start, self.stop, self.color_show)
-
-    def show_stripe(self):
-        self.neopixel.show()
+    def get_direction(self):
+        return self.direction
 
 ###############################################################################
 ### Setup
 ###############################################################################
 def setup_ws2812():
 
+    sel_1.value(0)
+
     global strip_obj
-    global led_obj
-    global ledstate
+    global strip_state
     global mg
     
     mg = MyGlobal
     
-    led_obj = []
+    strip_state = []
     strip_obj = []
 
-    ledstate = LedState()
+    strip_state.append(LedState(mg.numpix_1, mg.anim_0_dir, mg.anim_offset_0))        # 1
+    strip_state.append(LedState(mg.numpix_2, mg.anim_1_dir, mg.anim_offset_1))        # 2
+    strip_state.append(LedState(mg.numpix_3, mg.anim_2_dir, mg.anim_offset_2))        # 3
+    strip_state.append(LedState(mg.numpix_4, mg.anim_3_dir, mg.anim_offset_3))        # 4
+    strip_state.append(LedState(mg.numpix_5, mg.anim_4_dir, mg.anim_offset_4))        # 5
+    strip_state.append(LedState(mg.numpix_6, mg.anim_5_dir, mg.anim_offset_5))        # 6
     
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_1, 0, 2, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_2, 1, 3, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_3, 2, 4, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 3, 5, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_5, 4, 6, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_6, 5, 7, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_7, 6, 8, "GRB"))
-    strip_obj.append(module_neopixel.Neopixel(mg.numpix_8, 7, 9, "GRB"))
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_1, 0, 2, "GRB"))    # 1
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_2, 1, 3, "GRB"))    # 2
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_3, 2, 4, "GRB"))    # 3
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_4, 3, 5, "GRB"))    # 4
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_5, 4, 6, "GRB"))    # 5
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_6, 5, 7, "GRB"))    # 6
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_7, 6, 8, "GRB"))    # 7 -> n.B.
+    strip_obj.append(module_neopixel.Neopixel(mg.numpix_8, 7, 9, "GRB"))    # 8 -> n.B.
     
+    
+
     for stripes in strip_obj:
         stripes.brightness(255)
    
@@ -142,28 +68,57 @@ def setup_ws2812():
         stripes.set_pixel_line(0, stripes.num_leds - 1, mg.color_off)
     for stripes in strip_obj:
         stripes.show()
-
+#------------------------------------------------------------------------------
 
 def do_all_off():
     # Setze Farbwerte in alle LED-Objekte
+    anim_stop_all()
     for stripes in strip_obj:
         stripes.fill(mg.color_off)
-    for stripes in strip_obj:
-        stripes.show()
+    do_refresh()
 
 def do_all_def():
     # Setze Farbwerte in alle LED-Objekte
+    anim_stop_all()
     for stripes in strip_obj:
         stripes.fill(mg.color_def)
-    for stripes in strip_obj:
-        stripes.show()
+    do_refresh()
 
 def do_all_on():
     # Setze Farbwerte in alle LED-Objekte
+    anim_stop_all()
     for stripes in strip_obj:
         stripes.fill(mg.color_on)
+    do_refresh()
+
+def do_refresh():
     for stripes in strip_obj:
         stripes.show()
+
+def anim_startup(value):
+    strip_state[value].set_anim(True)
+    strip_obj[value].fill(MyGlobal.color_anim_0)
+    num_pix = strip_state[value].led_counts
+    repeat_pix = int(num_pix / MyGlobal.anim_counts)
+    for i in range(0,MyGlobal.anim_counts):
+        print(i * repeat_pix)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 1, MyGlobal.color_anim_1)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 2, MyGlobal.color_anim_2)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 3, MyGlobal.color_anim_1)
+    strip_obj[value].show()
+
+def anim_update():
+    for index, strip in enumerate(strip_state):
+        if strip.get_anim():
+            if strip.get_direction():
+                strip_obj[index].rotate_left(1)
+            else:
+                strip_obj[index].rotate_right(1)
+            strip_obj[index].show()
+
+def anim_stop_all():
+    for strip in strip_state:
+        strip.set_anim(False)
 
 def test_stripe():                                # Pro Stripe einmal Aus-RGB(25%) -Aus 
     
@@ -214,23 +169,37 @@ def test_rotate():
         time.sleep(0.02)
         loop = loop + 1
 
+
+#------------------------------------------------------------------------------
+#--- Main
+#------------------------------------------------------------------------------
 def main():
     
-    sel_1.value(0)
-
     print("WS2812 -> Setup")
     setup_ws2812()
         
     print("WS2812 -> Test 1")
     do_all_def()
+
+    anim_startup(0)
+
+    time.sleep(0.3)
+
+    for i in range(0,50):
+        anim_update()
+        time.sleep(0.1)
   
     print("WS2812 -> End of Program !!!")
 
 # End
 
-#------------------------------------------------------------------------------
-#--- Main
-#------------------------------------------------------------------------------
+#==============================================================================
+#=== Start -> Main 
+#==============================================================================
 
 if __name__ == "__main__":
     main()
+
+#==============================================================================
+#=== End of Program
+#==============================================================================

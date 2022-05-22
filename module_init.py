@@ -30,6 +30,13 @@ class Global_WS2812:
     numpix_7            = 16    # Anzahl LEDs im 7. Stripe n.B.
     numpix_8            = 16    # Anzahl LEDs im 8. Stripe n.B.
 
+    anim_offset_0       = 0
+    anim_offset_1       = 0
+    anim_offset_2       = 0
+    anim_offset_3       = 0
+    anim_offset_4       = 0
+    anim_offset_5       = 0
+
     color_def           = (  0,  0, 10)
     color_off           = (  0,  0,  0)
     color_on            = (100,100,100)
@@ -47,6 +54,15 @@ class Global_WS2812:
     color_s6_0          = ( 60, 60, 60)
     color_s7_0          = ( 70, 70, 70)
     color_s8_0          = ( 80, 80, 80)
+
+    anim_0_dir          = False
+    anim_1_dir          = False
+    anim_2_dir          = False
+    anim_3_dir          = False
+    anim_4_dir          = False
+    anim_5_dir          = False
+
+    anim_counts         = 4
 
 
 class Global_Default:

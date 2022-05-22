@@ -10,6 +10,10 @@ import time
 #            |  0 |  1 |  2 |  3 |  4 |  5 |  6 |  7 |
 stripe_map = (  0 ,  5 ,  1 ,  4 ,  0 ,  3 ,  3 ,  2 )
 
+def anim_func():
+    #MyWS2812.do_anim()
+    pass
+
 # ------------------------------------------------------------------------------
 # --- Main Function                                                          ---
 # ------------------------------------------------------------------------------
@@ -17,7 +21,11 @@ def main():
 
     print("=== Start Main ===")
     
+    anim_couter = 0
 
+    if anim_couter > 50:
+            anim_couter = 0
+            anim_func()
 
     while MySerial.sercon_read_flag():
 
@@ -42,7 +50,7 @@ def main():
                             #print("def")
                             MyWS2812.do_all_def()
                     if MyDecode.get_cmd_2() == "obj":
-                        #print("obj")
+                        print("do->obj")
                         #print(MyDecode.get_value_1())
                         #print(segment_map[MyDecode.get_value_1()])
                         #MyWS2812.set_led_obj(segment_map[MyDecode.get_value_1()], MyDecode.get_value_2())
@@ -74,9 +82,8 @@ if __name__ == "__main__":
         import module_ws2812_v3 as MyWS2812         # Modul WS2812  -> WS2812-Ansteuerung
         #print("WS2812 -> Setup")
         MyWS2812.setup_ws2812()
-        ### Test ###
-        #print("WS2812 -> Dot-Test")
-        #MyWS2812.test_rotate()
+        # Setup Default
+        MyWS2812.do_all_def()
 
     if MyModule.inc_decoder:
         #print("Decode -> Load-Module")
