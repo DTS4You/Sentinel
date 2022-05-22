@@ -8,11 +8,14 @@ sel_1 = Pin(MyGlobal.sel_pin_1,Pin.OUT)
 sel_2 = Pin(MyGlobal.sel_pin_2,Pin.OUT)
 
 class LedState:
-    def __init__(self, led_counts, direction, offset):
+    def __init__(self, led_counts, direction, offset, color_anim_0, color_anim_1, color_anim_2):
         self.anim_state = False
         self.led_counts = led_counts
         self.direction = direction
         self.offset = offset
+        self.color_anim_0 = color_anim_0
+        self.color_anim_1 = color_anim_1
+        self.color_anim_2 = color_anim_2
 
     def set_anim(self, set):
         self.anim_state = set
@@ -42,12 +45,12 @@ def setup_ws2812():
     strip_state = []
     strip_obj = []
 
-    strip_state.append(LedState(mg.numpix_1, mg.anim_0_dir, mg.anim_offset_0))        # 1
-    strip_state.append(LedState(mg.numpix_2, mg.anim_1_dir, mg.anim_offset_1))        # 2
-    strip_state.append(LedState(mg.numpix_3, mg.anim_2_dir, mg.anim_offset_2))        # 3
-    strip_state.append(LedState(mg.numpix_4, mg.anim_3_dir, mg.anim_offset_3))        # 4
-    strip_state.append(LedState(mg.numpix_5, mg.anim_4_dir, mg.anim_offset_4))        # 5
-    strip_state.append(LedState(mg.numpix_6, mg.anim_5_dir, mg.anim_offset_5))        # 6
+    strip_state.append(LedState(mg.numpix_1, mg.anim_0_dir, mg.anim_offset_0, mg.color_s1_0, mg.color_s1_1, mg.color_s1_2))        # 1
+    strip_state.append(LedState(mg.numpix_2, mg.anim_1_dir, mg.anim_offset_1, mg.color_s2_0, mg.color_s2_1, mg.color_s2_2))        # 2
+    strip_state.append(LedState(mg.numpix_3, mg.anim_2_dir, mg.anim_offset_2, mg.color_s3_0, mg.color_s3_1, mg.color_s3_2))        # 3
+    strip_state.append(LedState(mg.numpix_4, mg.anim_3_dir, mg.anim_offset_3, mg.color_s4_0, mg.color_s4_1, mg.color_s4_2))        # 4
+    strip_state.append(LedState(mg.numpix_5, mg.anim_4_dir, mg.anim_offset_4, mg.color_s5_0, mg.color_s5_1, mg.color_s5_2))        # 5
+    strip_state.append(LedState(mg.numpix_6, mg.anim_5_dir, mg.anim_offset_5, mg.color_s6_0, mg.color_s6_1, mg.color_s6_2))        # 6
     
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_1, 0, 2, "GRB"))    # 1
     strip_obj.append(module_neopixel.Neopixel(mg.numpix_2, 1, 3, "GRB"))    # 2
@@ -97,14 +100,13 @@ def do_refresh():
 
 def anim_startup(value):
     strip_state[value].set_anim(True)
-    strip_obj[value].fill(MyGlobal.color_anim_0)
+    strip_obj[value].fill(strip_state[value].color_anim_0)
     num_pix = strip_state[value].led_counts
     repeat_pix = int(num_pix / MyGlobal.anim_counts)
     for i in range(0,MyGlobal.anim_counts):
-        print(i * repeat_pix)
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 1, MyGlobal.color_anim_1)
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 2, MyGlobal.color_anim_2)
-        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 3, MyGlobal.color_anim_1)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 1, strip_state[value].color_anim_1)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 2, strip_state[value].color_anim_2)
+        strip_obj[value].set_pixel(strip_state[value].offset + i * repeat_pix + 3, strip_state[value].color_anim_1)
     strip_obj[value].show()
 
 def anim_update():
@@ -185,7 +187,7 @@ def main():
 
     time.sleep(0.3)
 
-    for i in range(0,50):
+    for i in range(0,200):
         anim_update()
         time.sleep(0.1)
   

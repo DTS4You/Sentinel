@@ -11,8 +11,7 @@ import time
 stripe_map = (  0 ,  5 ,  1 ,  4 ,  0 ,  3 ,  3 ,  2 )
 
 def anim_func():
-    #MyWS2812.do_anim()
-    pass
+    MyWS2812.anim_update()
 
 # ------------------------------------------------------------------------------
 # --- Main Function                                                          ---
@@ -23,12 +22,14 @@ def main():
     
     anim_couter = 0
 
-    if anim_couter > 50:
+    while MySerial.sercon_read_flag():      # Loop for Ever, execpt EOT
+
+        anim_couter = anim_couter + 1       # Anim Tick
+
+        if anim_couter > 20:                # Tick 10ms * Value
             anim_couter = 0
             anim_func()
-
-    while MySerial.sercon_read_flag():
-
+        
         MySerial.sercon_read_line()
         if MySerial.get_ready_flag():       # Zeichenkette empfangen
             #print(MySerial.get_string())
@@ -50,19 +51,26 @@ def main():
                             #print("def")
                             MyWS2812.do_all_def()
                     if MyDecode.get_cmd_2() == "obj":
-                        print("do->obj")
+                        #print("do->obj")
                         #print(MyDecode.get_value_1())
-                        #print(segment_map[MyDecode.get_value_1()])
-                        #MyWS2812.set_led_obj(segment_map[MyDecode.get_value_1()], MyDecode.get_value_2())
-                        pass
-
+                        if MyDecode.get_value_1() == 8:
+                            #print("Demo-Mode")
+                            MyWS2812.do_all_def()
+                            MyWS2812.anim_startup(0)
+                            MyWS2812.anim_startup(1)
+                            MyWS2812.anim_startup(2)
+                            MyWS2812.anim_startup(3)
+                            MyWS2812.anim_startup(4)
+                            MyWS2812.anim_startup(5)
+                        else:
+                            #print("Normal-Mode")
+                            #print(stripe_map[MyDecode.get_value_1()])
+                            MyWS2812.do_all_def()
+                            #MyWS2812.anim_startup(MyDecode.get_value_1())               # ohne Mapping
+                            MyWS2812.anim_startup(stripe_map[MyDecode.get_value_1()])  # mit Mapping
+                        
         # Loop-Delay !!!
         time.sleep(0.01)        # 10ms
-        
-        
-
-        
-
 
 
     print("=== End of Main ===")
