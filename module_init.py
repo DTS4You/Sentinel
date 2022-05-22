@@ -32,10 +32,10 @@ class Global_WS2812:
 
     anim_offset_0       = 0
     anim_offset_1       = 0
-    anim_offset_2       = 0
-    anim_offset_3       = 0
-    anim_offset_4       = 0
-    anim_offset_5       = 0
+    anim_offset_2       = 20
+    anim_offset_3       = 40
+    anim_offset_4       = 60
+    anim_offset_5       = 80
 
     color_def           = (  0,  0, 10)
     color_off           = (  0,  0,  0)
@@ -52,9 +52,9 @@ class Global_WS2812:
     color_s2_0          = (  0,  5,  0)
     color_s2_1          = (  0, 50,  0)
     color_s2_2          = (  0,100,  0)
-    color_s3_0          = (  0,  0,  5)
-    color_s3_1          = (  0,  0, 50)
-    color_s3_2          = (  0,  0,100)
+    color_s3_0          = (  0,  0,  8)
+    color_s3_1          = (  0,  0, 70)
+    color_s3_2          = (  0,  0,120)
     color_s4_0          = (  4,  4,  0)
     color_s4_1          = ( 40, 40,  0)
     color_s4_2          = ( 80, 80,  0)
@@ -69,11 +69,11 @@ class Global_WS2812:
     color_s8_0          = ( 80, 80, 80)
 
     anim_0_dir          = False
-    anim_1_dir          = False
-    anim_2_dir          = False
-    anim_3_dir          = False
-    anim_4_dir          = False
-    anim_5_dir          = False
+    anim_1_dir          = True
+    anim_2_dir          = True
+    anim_3_dir          = True
+    anim_4_dir          = True
+    anim_5_dir          = True
 
     anim_counts         = 4
 
